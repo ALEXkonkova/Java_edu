@@ -1,0 +1,80 @@
+Ключевое слово this:
+Ключевое слово this используется для ссылки на текущий объект класса.
+
+Разрешение конфликтов имён: Если в классе есть параметры метода или конструктора, которые имеют такие же имена, как поля класса, вы можете использовать this, чтобы указать, что вы имеете в виду поле класса, а не параметр метода.
+   public class Example {
+       private int value;
+
+       // Конструктор с параметром, который имеет то же имя
+       public Example(int value) {
+           this.value = value; // Здесь 'this.value' ссылается на поле, а 'value' - это параметр
+       }
+   }
+Вызов других конструкторов: Вы можете использовать this() для вызова другого конструктора в том же классе.
+   public class Example {
+       private int value;
+
+       public Example() {
+           this(10); // Вызов конструктора с параметром
+       }
+
+       public Example(int value) {
+           this.value = value;
+       }
+   }
+Передача текущего объекта: Вы можете передать текущий объект в качестве аргумента методу другого объекта.
+   public void someMethod(Example obj) {
+       // ...
+   }
+
+   public void invoke() {
+       someMethod(this); // Переходим к некоторому методу другого класса
+   }
+
+Ключевое слово super:
+Ключевое слово super используется для работы с классом-родителем (суперклассом).
+
+Вызов конструктора суперкласса: Вы можете использовать super() для вызова конструктора суперкласса. Это должно быть первым оператором в конструкторе подкласса.
+   public class Parent {
+       public Parent() {
+           System.out.println("Суперкласс");
+       }
+   }
+
+   public class Child extends Parent {
+       public Child() {
+           super(); // Явный вызов конструктора суперкласса
+           System.out.println("Подкласс");
+       }
+   }
+Доступ к полям и методам суперкласса: Вы можете использовать super для доступа к полям и методам суперкласса, если они скрыты в подклассе.
+   public class Parent {
+       protected int value = 5;
+   }
+
+   public class Child extends Parent {
+       private int value = 10;
+
+       public void showValues() {
+           System.out.println("Value in Child: " + this.value); // 10
+           System.out.println("Value in Parent: " + super.value); // 5
+       }
+   }
+Переопределение методов: Если вы хотите вызвать метод суперкласса, который был переопределен в подклассе, используйте super.
+   public class Parent {
+       public void display() {
+           System.out.println("Display from Parent");
+       }
+   }
+
+   public class Child extends Parent {
+       @Override
+       public void display() {
+           super.display(); // Вызов метода суперкласса
+           System.out.println("Display from Child");
+       }
+   }
+
+Вывод:
+this ссылается на текущий объект и полезен для разрешения конфликтов имён, вызова других конструкторов и передачи текущего объекта.
+super ссылается на класс-родитель и используется для вызова его методов и конструктора, а также для доступа к полям суперкласса.
