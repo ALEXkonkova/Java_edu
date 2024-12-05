@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         // Путь к файлу
-        File file = new File("example.txt");
+        File file = new File("example_str.txt");
 
         // Используем try-with-resources для автоматического закрытия Scanner
         try (Scanner scanner = new Scanner(file)) {
