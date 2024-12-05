@@ -1,0 +1,63 @@
+1. @Override
+Аннотация @Override указывает, что метод переопределяет метод суперкласса. Она помогает разработчикам и компилятору удостовериться, что метод действительно переопределяет метод базового класса, что предотвращает ошибки, связанные с неверной сигнатурой.
+
+Пример использования:
+class Parent {
+    void display() {
+        System.out.println("Display from Parent");
+    }
+}
+
+class Child extends Parent {
+    @Override // Убедитесь, что метод переопределяет метод из суперкласса
+    void display() {
+        System.out.println("Display from Child");
+    }
+}
+
+2. @Deprecated
+Аннотация @Deprecated используется для пометки метода, класса или поля, которые устарели и не рекомендуются к использованию. Это может произойти, если функциональность была заменена более новым подходом или реализацией. Когда вы используете устаревший элемент, компилятор выдаст предупреждение.
+
+Пример использования:
+class Example {
+    @Deprecated // Метод устарел и не рекомендуется использовать
+    void oldMethod() {
+        System.out.println("This method is old.");
+    }
+
+    void newMethod() {
+        System.out.println("This method is new.");
+    }
+}
+
+// Использование устаревшего метода
+public class Main {
+    public static void main(String[] args) {
+        Example ex = new Example();
+        ex.oldMethod(); // Компилятор выдаст предупреждение о том, что метод устарел
+    }
+}
+
+3. @SuppressWarnings
+Аннотация @SuppressWarnings используется для того, чтобы подавить предупреждения компилятора, которые могут возникнуть в результате использования определенных программных конструкций. Например, если вы используете необработанные шаблоны (raw types) или неиспользуемые переменные, компилятор может выдавать предупреждения, что иногда бывает ненужным.
+
+Пример использования:
+class Example {
+    @SuppressWarnings("deprecation")
+    void useDeprecated() {
+        Example ex = new Example();
+        ex.oldMethod(); // Предупреждение о том, что oldMethod устарел, будет подавлено
+    }
+
+    @Deprecated
+    void oldMethod() {
+        System.out.println("This method is deprecated.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Example example = new Example();
+        example.useDeprecated(); // Предупреждение не будет выдано
+    }
+}
